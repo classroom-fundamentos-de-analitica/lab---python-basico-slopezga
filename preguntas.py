@@ -12,6 +12,18 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 """
 
+with open("data.csv", "r") as file:
+    data = file.readlines()
+
+newdata = data
+
+newdata = [line.replace("\n", "") for line in newdata]
+
+newdata = [line.split("\t") for line in newdata]
+
+from collections import Counter
+from operator import itemgetter
+
 
 def pregunta_01():
     """
@@ -21,8 +33,10 @@ def pregunta_01():
     214
 
     """
-    return
-
+    a = 0
+    for z in newdata[0:]:
+        a += int(z[1])
+    return a
 
 def pregunta_02():
     """
@@ -39,7 +53,11 @@ def pregunta_02():
     ]
 
     """
-    return
+    z = [z[0] for z in newdata[0:]]
+    a = Counter(z).most_common()
+    a = sorted(a, key=itemgetter(0), reverse=False)
+
+    return a
 
 
 def pregunta_03():
