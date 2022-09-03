@@ -21,10 +21,6 @@ newdata = [line.replace("\n", "") for line in newdata]
 
 newdata = [line.split("\t") for line in newdata]
 
-from collections import Counter
-from operator import itemgetter
-
-
 def pregunta_01():
     """
     Retorne la suma de la segunda columna.
@@ -53,11 +49,15 @@ def pregunta_02():
     ]
 
     """
-    z = [z[0] for z in newdata[0:]]
-    a = Counter(z).most_common()
-    a = sorted(a, key=itemgetter(0), reverse=False)
+    a = [z[0] for z in newdata[0:]]
+    b = sorted(list(set(a)))
+    aa = []
+    for i in b:
+        aa.append(a.count(i))
 
-    return a
+    z = list(zip(b, aa))
+    
+    return z
 
 
 def pregunta_03():
@@ -75,9 +75,19 @@ def pregunta_03():
     ]
 
     """
-    return
+    a = [z[0] for z in newdata[0:]]
+    a = sorted(list(set(a)))
 
+    ac = []
+    w = [int(z[1]) for z in newdata[0:] if z[0] == "A"]
+    for i in a:
+        w = [int(z[1]) for z in newdata[0:] if z[0] == i]
+        ac.append(sum(w))
 
+    ac = list(zip(a,ac))
+    return ac
+
+print(pregunta_03())
 def pregunta_04():
     """
     La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la cantidad de
