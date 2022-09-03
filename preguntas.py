@@ -12,6 +12,9 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 """
 
+from audioop import maxpp
+
+
 with open("data.csv", "r") as file:
     data = file.readlines()
 
@@ -79,7 +82,6 @@ def pregunta_03():
     a = sorted(list(set(a)))
 
     ac = []
-    w = [int(z[1]) for z in newdata[0:] if z[0] == "A"]
     for i in a:
         w = [int(z[1]) for z in newdata[0:] if z[0] == i]
         ac.append(sum(w))
@@ -122,8 +124,6 @@ def pregunta_04():
 
     return ac
 
-print(pregunta_04())
-
 def pregunta_05():
     """
     Retorne una lista de tuplas con el valor maximo y minimo de la columna 2 por cada
@@ -139,8 +139,18 @@ def pregunta_05():
     ]
 
     """
-    return
+    a = [z[0] for z in newdata[0:]]
+    a = sorted(list(set(a)))
 
+    maxi = []
+    mini = []
+    for i in a:
+        w = [int(z[1]) for z in newdata[0:] if z[0] == i]
+        maxi.append(max(w))
+        mini.append(min(w))
+
+    ac = list(zip(a,maxi,mini))
+    return ac
 
 def pregunta_06():
     """
