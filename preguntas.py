@@ -87,7 +87,6 @@ def pregunta_03():
     ac = list(zip(a,ac))
     return ac
 
-print(pregunta_03())
 def pregunta_04():
     """
     La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la cantidad de
@@ -110,8 +109,20 @@ def pregunta_04():
     ]
 
     """
-    return
+    a = [z[2].split("-") for z in newdata[0:]]
+    b = sorted(list(set([z[1] for z in a])))
 
+    ac = []
+
+    for i in b:
+        w = ([z for z in a if z[1] == i])
+        ac.append(len(w))
+
+    ac = list(zip(b,ac))
+
+    return ac
+
+print(pregunta_04())
 
 def pregunta_05():
     """
