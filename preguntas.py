@@ -174,8 +174,36 @@ def pregunta_06():
     ]
 
     """
-    return
-
+    valores = []
+    for diccionario in x:
+        [valores.append(valor) for valor in diccionario]
+    x = [(valor.split(":")[0],int(valor.split(":")[1])) for valor in valores]
+    x = sorted(x,key=itemgetter(0))
+    tuples = []
+    previous_key = None
+    acum = 0
+    i = 0
+    nums = []
+    while(True):
+        key, value = x[i]
+        if previous_key is None:
+            previous_key = key
+        if key != previous_key:
+            minimo = min(nums)
+            maximo = max(nums)
+            tuples.append((previous_key,minimo,maximo))
+            previous_key = key
+            nums = []
+            nums.append(value)
+        else:
+            nums.append(value)
+        i += 1
+        if i == len(x):
+            minimo = min(nums)
+            maximo = max(nums)
+            tuples.append((previous_key,minimo,maximo))
+            break
+    return tuples
 
 def pregunta_07():
     """
