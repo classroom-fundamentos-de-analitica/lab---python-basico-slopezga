@@ -257,6 +257,8 @@ def pregunta_07():
             break
     return tuples
 
+# print(pregunta_07())
+
 def pregunta_08():
     """
     Genere una lista de tuplas, donde el primer elemento de cada tupla contiene  el valor
