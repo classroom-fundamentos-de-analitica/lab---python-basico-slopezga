@@ -209,8 +209,6 @@ def pregunta_06():
             break
     return tuples
 
-print(pregunta_06())
-
 def pregunta_07():
     """
     Retorne una lista de tuplas que asocien las columnas 0 y 1. Cada tupla contiene un
@@ -232,8 +230,32 @@ def pregunta_07():
     ]
 
     """
-    return
-
+    x = open("data.csv", "r").readlines()
+    x = [z.replace("\n", "") for z in x]
+    x = [data.split("\t") for data in x]
+    x = [(int(data[1]),data[0]) for data in x]
+    x = sorted(x)
+    tuples = []
+    previous_key = None
+    acum = 0
+    i = 0
+    letras = []
+    while(True):
+        key, value = x[i]
+        if previous_key is None:
+            previous_key = key
+        if key != previous_key:
+            tuples.append((previous_key,letras))
+            previous_key = key
+            letras = []
+            letras.append(value)
+        else:
+            letras.append(value)
+        i += 1
+        if i == len(x):
+            tuples.append((previous_key,letras))
+            break
+    return tuples
 
 def pregunta_08():
     """
