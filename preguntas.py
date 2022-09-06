@@ -13,6 +13,7 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 """
 
 from audioop import maxpp
+from operator import itemgetter
 
 
 with open("data.csv", "r") as file:
@@ -234,7 +235,7 @@ def pregunta_07():
     x = [z.replace("\n", "") for z in x]
     x = [data.split("\t") for data in x]
     x = [(int(data[1]),data[0]) for data in x]
-    #x = sorted(x)
+    x = sorted(x, key=itemgetter(0))
     tuples = []
     previous_key = None
     acum = 0
@@ -257,7 +258,7 @@ def pregunta_07():
             break
     return tuples
 
-# print(pregunta_07())
+print(pregunta_07())
 
 def pregunta_08():
     """
@@ -281,7 +282,32 @@ def pregunta_08():
     ]
 
     """
-    return
+    x = open("data.csv", "r").readlines()
+    x = [z.replace("\n", "") for z in x]
+    x = [data.split("\t") for data in x]
+    x = [(int(data[1]),data[0]) for data in x]
+    x = sorted(x,key=itemgetter(0))
+    tuples = []
+    previous_key = None
+    acum = 0
+    i = 0
+    letras = []
+    while(True):
+        key, value = x[i]
+        if previous_key is None:
+            previous_key = key
+        if key != previous_key:
+            tuples.append((previous_key,sorted(set(letras))))
+            previous_key = key
+            letras = []
+            letras.append(value)
+        else:
+            letras.append(value)
+        i += 1
+        if i == len(x):
+            tuples.append((previous_key,sorted(set(letras))))
+            break
+    return tuples
 
 
 def pregunta_09():
