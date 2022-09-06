@@ -234,7 +234,7 @@ def pregunta_07():
     x = [z.replace("\n", "") for z in x]
     x = [data.split("\t") for data in x]
     x = [(int(data[1]),data[0]) for data in x]
-    x = sorted(x)
+    #x = sorted(x)
     tuples = []
     previous_key = None
     acum = 0
