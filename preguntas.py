@@ -182,7 +182,7 @@ def pregunta_06():
     for diccionario in x:
         [valores.append(valor) for valor in diccionario]
     x = [(valor.split(":")[0],int(valor.split(":")[1])) for valor in valores]
-    x = sorted(x,key=itemgetter(0))
+    x = sorted(x)
     tuples = []
     previous_key = None
     acum = 0
@@ -208,6 +208,8 @@ def pregunta_06():
             tuples.append((previous_key,minimo,maximo))
             break
     return tuples
+
+print(pregunta_06())
 
 def pregunta_07():
     """
