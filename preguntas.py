@@ -174,6 +174,10 @@ def pregunta_06():
     ]
 
     """
+    x = open("data.csv", "r").readlines()
+    x = [z.replace("\n", "") for z in x]
+    x = [data.split("\t") for data in x]
+    x = [data[4].split(",") for data in x]
     valores = []
     for diccionario in x:
         [valores.append(valor) for valor in diccionario]
