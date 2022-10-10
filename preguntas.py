@@ -258,8 +258,6 @@ def pregunta_07():
             break
     return tuples
 
-print(pregunta_07())
-
 def pregunta_08():
     """
     Genere una lista de tuplas, donde el primer elemento de cada tupla contiene  el valor
@@ -330,16 +328,17 @@ def pregunta_09():
     }
 
     """
-    
-    newdata = file.readlines()
-    data = [x.strip().split('\t')[-1] for x in data]
-    data = ','.join(data).split(',')
-    data = [x.split(':')[0] for x in data]
-    strings = sorted(list(set(data)))
-    res = dict()
-    
-    for i in strings:
-        res[i] = data.count(i)
+
+    with open('data.csv') as file:
+        data = file.readlines()
+        data = [x.strip().split('\t')[-1] for x in data]
+        data = ','.join(data).split(',')
+        data = [x.split(':')[0] for x in data]
+        strings = sorted(list(set(data)))
+        res = dict()
+        
+        for i in strings:
+            res[i] = data.count(i)
 
     return res
 
