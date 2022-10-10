@@ -330,7 +330,18 @@ def pregunta_09():
     }
 
     """
-    return
+    
+    newdata = file.readlines()
+    data = [x.strip().split('\t')[-1] for x in data]
+    data = ','.join(data).split(',')
+    data = [x.split(':')[0] for x in data]
+    strings = sorted(list(set(data)))
+    res = dict()
+    
+    for i in strings:
+        res[i] = data.count(i)
+
+    return res
 
 
 def pregunta_10():
