@@ -361,7 +361,19 @@ def pregunta_10():
 
 
     """
-    return
+    with open('data.csv') as file:
+        data = file.readlines()
+        data = [x.strip().split('\t') for x in data]
+        
+        for i in data:
+            i.pop(1)
+            i.pop(1)
+            i[1] = len(i[1].split(','))
+            i[2] = len(i[2].split(','))
+            
+        res = [tuple(x) for x in data]
+    return res
+
 
 
 def pregunta_11():
@@ -382,7 +394,25 @@ def pregunta_11():
 
 
     """
-    return
+    with open('data.csv') as file:
+        
+        data = file.readlines()
+        aux = data.copy()
+        data = [x.strip().split('\t')[3] for x in data]
+        data = ','.join(data).split(',')
+        l = sorted(list(set(data)))
+        aux = [x.strip().split('\t') for x in aux]
+        res = dict()
+        
+        for i in l:
+            acum = 0
+            for j in aux:
+                if i in j[3]:
+                    acum += int(j[1])
+            res[i] = acum
+            
+    return res
+
 
 
 def pregunta_12():
@@ -400,4 +430,38 @@ def pregunta_12():
     }
 
     """
-    return
+    with open('data.csv') as file:
+        
+        data = file.readlines()
+        data = [x.strip().split('\t') for x in data]
+        listaux = list()
+        
+        for i in data:
+            for j in range(3):
+                i.pop(1)
+            i[1] = i[1].split(',')
+            
+        valores = [x[1] for x in data]
+        
+        for j in valores:
+            lista = sum([int(x.split(':').pop(1)) for x in j])
+            listaux.append(lista)
+            
+        for k in range(len(data)):
+            data[k].append(listaux[k])
+            data[k].pop(1)
+            
+        l = [x[0] for x in data]
+        l = sorted(list(set(l)))
+        res = dict()
+        
+        for i in l:
+            acum = 0
+            for j in data:
+                if j[0] == i:
+                    acum += j[1]
+            res[i] = acum
+            
+    return res
+
+print(pregunta_12())
